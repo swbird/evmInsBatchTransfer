@@ -6,7 +6,7 @@ from loguru import logger
 from eth_account import Account
 from GetIns import downloadInsData
 logger.add(f'日志.txt')
-web3 = Web3(Web3.HTTPProvider('https://rpc.ankr.com/bsc'))  # 我自己的支持1gwei的rpc节点
+web3 = Web3(Web3.HTTPProvider('https://rpc.ankr.com/bsc'))  # 支持1gwei的rpc节点
 gasPrcie = 1 # 1gwei
 def SendTransaction(txn, private_key, isWait=False):
     txn["chainId"] = 56
