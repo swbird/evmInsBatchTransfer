@@ -36,6 +36,7 @@ def transferIns(nonce,data,targetAddr, privateKey, isSendTransaction=False):
         gas = web3.eth.estimateGas(txn)
         print(gas)
 if __name__=="__main__":
+    delay = 2 # 每次转账间隔2s
     pk = '这里填写私钥'
     targetAddr = '这里填写目标地址'
     transferNum = 5000 # 这里填写转账数量
@@ -53,6 +54,7 @@ if __name__=="__main__":
             try:
                 transferIns(initNonce+ct, i, targetAddr, pk, True)
                 ct += 1
+                time.sleep(delay)
             except Exception as e:
                 logger.debug(f'处理转账时发生错误=>{e}')
                 time.sleep(12)
