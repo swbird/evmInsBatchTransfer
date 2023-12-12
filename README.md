@@ -6,3 +6,7 @@
 1. 修改transfer.py的几个参数
 2. 执行
    ```python transfer.py```
+
+如需转账48fans, 下载所有代码, 安装好必要的包，修改transfer48Fans.py文件内参数
+执行 
+```python transfer48Fans.py```
