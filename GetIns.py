@@ -9,7 +9,9 @@ evmInkGraphQl = 'https://api.evm.ink/v1/graphql/'
 bsci_URL = '\\x646174613a2c7b2270223a226273632d3230222c226f70223a226d696e74222c227469636b223a2262736369222c22616d74223a2231303030227d'
 # 此处可改为任意的 mint data以转账不同的铭文
 fans_48_uri = '\\x646174613a2c7b2270223a22626e622d3438222c226f70223a226d696e74222c227469636b223a2266616e73222c22616d74223a2231227d'
-
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
 def getAddrIns(allInfo,addr:str,offset,uri=bsci_URL, limit=50):
     payload = {
       "query": "query GetUserInscriptions($limit: Int, $offset: Int, $order_by: [inscriptions_order_by!] = {}, $where: inscriptions_bool_exp = {}, $whereAggregate: inscriptions_bool_exp = {}) {\n  inscriptions_aggregate(where: $whereAggregate) {\n    aggregate {\n      count\n    }\n  }\n  inscriptions(limit: $limit, offset: $offset, order_by: $order_by, where: $where) {\n    block_number\n    confirmed\n    content_uri\n    created_at\n    creator_address\n    owner_address\n    trx_hash\n    id\n    position\n    category\n    mtype\n    internal_trx_index\n    network_id\n    brc20_command {\n      reason\n      is_valid\n    }\n  }\n}",
@@ -46,7 +48,7 @@ def getAddrIns(allInfo,addr:str,offset,uri=bsci_URL, limit=50):
       },
       "operationName": "GetUserInscriptions"
     }
-    res = requests.post(evmInkGraphQl, json=payload)
+    res = requests.post(evmInkGraphQl, json=payload, headers=headers)
     # print(res.text)
     inscriptions = res.json()['data']['inscriptions']
 
@@ -92,7 +94,7 @@ def getAddrInsCount(addr:str,offset,uri=bsci_URL, limit=50):
       },
       "operationName": "GetUserInscriptions"
     }
-    res = requests.post(evmInkGraphQl, json=payload)
+    res = requests.post(evmInkGraphQl, json=payload, headers=headers)
     # print(res.text)
     inscriptions = res.json()['data']['inscriptions']
     count = res.json()['data']['inscriptions_aggregate']['aggregate']['count']
