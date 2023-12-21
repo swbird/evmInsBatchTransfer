@@ -5,7 +5,7 @@ from pprint import pprint
 from web3.auto import Web3
 from loguru import logger
 evmInkGraphQl = 'https://api.evm.ink/v1/graphql/'
-
+evmInkGraphQl = "http://109.123.231.12:8080/?type=POST&targetUrl=https://api.evm.ink/v1/graphql/" # 过cloudflare
 bsci_URL = '\\x646174613a2c7b2270223a226273632d3230222c226f70223a226d696e74222c227469636b223a2262736369222c22616d74223a2231303030227d'
 # 此处可改为任意的 mint data以转账不同的铭文
 fans_48_uri = '\\x646174613a2c7b2270223a22626e622d3438222c226f70223a226d696e74222c227469636b223a2266616e73222c22616d74223a2231227d'
